@@ -20,6 +20,7 @@ namespace Assets.Camera.Editor
                 cameraController.offset = cameraController.transform.position - cameraController.target.transform.position;
                 Vector3 lookAt = cameraController.target.position + cameraController.lookYoffset * Vector3.up;
                 cameraController.transform.LookAt(lookAt);
+                EditorUtility.SetDirty(target);
             }
         }
     }
