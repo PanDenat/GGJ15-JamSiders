@@ -21,7 +21,6 @@ public class PlayerController : MonoBehaviour
 	// Update is called once per frame
     void Update()
     {
-
         var xzV = GetDesiredXZVelocity();
         Vector3 yV;
 
@@ -38,6 +37,8 @@ public class PlayerController : MonoBehaviour
         return Input.GetButtonDown("Jump") && collisionChecker.IsColliding;
     }
 
+
+    private Camera camera;
     private Vector3 GetDesiredXZVelocity()
     {
         var x = Input.GetAxis("Horizontal");
@@ -45,7 +46,12 @@ public class PlayerController : MonoBehaviour
 
         var xzV = new Vector3(x, 0, z);
         xzV = Vector3.ClampMagnitude(xzV, 1);
-        
+
+        camera = camera ?? FindObjectOfType<Camera>();
+        var camEulerAngles = camera.transform.rotation.eulerAngles;
+        camEulerAngles.x = 0;
+        var camXZrot = Quaternion.Euler(camEulerAngles);
+        xzV = camXZrot*xzV;
 
         return xzV * velocityScale;
     }
