@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
         if (!grabber.IsHolding && xzVelocity != Vector3.zero)
         {
 
-            transform.rotation = Quaternion.LookRotation(xzVelocity *-1);
+            rigidbody.rotation = Quaternion.LookRotation(xzVelocity *-1);
         }
     }
 

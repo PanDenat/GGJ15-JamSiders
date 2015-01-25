@@ -25,6 +25,7 @@ public class Walker : MonoBehaviour
 
 	public void FixedUpdate()
 	{
+	    UpdateRotation();
 		if (destination != null)
 		{
 			if (Vector3.Distance(transform.position, destination.position) > reachDestinationDistance)
@@ -44,6 +45,16 @@ public class Walker : MonoBehaviour
 			}
 		}
 	}
+
+    private void UpdateRotation()
+    {
+        var xzVelocity = rigidbody.velocity;
+        xzVelocity.y = 0;
+        if (xzVelocity != Vector3.zero)
+        {
+            rigidbody.rotation = Quaternion.LookRotation(xzVelocity * -1);
+        }
+    }
 
 	public void SetDestination(Transform destination)
 	{
