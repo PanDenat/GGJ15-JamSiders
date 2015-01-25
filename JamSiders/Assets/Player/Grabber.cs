@@ -29,7 +29,10 @@ namespace Assets.Player
 
         private void LetGo()
         {
+            if (grabbedJoiner == null) { return; }
+            Destroy(grabbedJoiner.GetComponent<CollisionHitter>());
             Destroy(grabbedJoiner);
+            grabbedJoiner = null;
         }
 
 
@@ -39,15 +42,23 @@ namespace Assets.Player
             {
                 Grab();
             }
+
+            if (Input.GetButtonDown("LetGo"))
+            {
+                Debug.Log("letting go");
+                LetGo();
+            }
         }
 
         private void Grab()
         {
-            var closest = UnityEngine.Physics.OverlapSphere(transform.position, maxGrabDistance).GetClosest(transform.position);
+            if (grabbedJoiner != null) { return; }
+            var closest = UnityEngine.Physics.OverlapSphere(transform.position, maxGrabDistance).Where(col => col.GetComponent<GrabAnchor>() != null).GetClosest(transform.position);
             if (closest != null)
             {
-                var joiner = closest.gameObject.AddComponent<BallSocketJoiner>();
-                joiner.ConnectedBody = rigidbody;
+                var joiner = closest.gameObject.AddComponent<BallSocketJoiner>().Init(this);
+                closest.gameObject.AddComponent<CollisionHitter>();
+                //joiner.ConnectedBody = rigidbody;
                 grabbedJoiner = joiner;
             }
         }
