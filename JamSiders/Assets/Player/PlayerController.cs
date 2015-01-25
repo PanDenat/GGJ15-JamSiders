@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Assets.Physics;
+using Assets.Player;
 
 public class PlayerController : MonoBehaviour
 {
@@ -30,6 +31,20 @@ public class PlayerController : MonoBehaviour
 
         rigidbody.velocity = v;
 
+        UpdateRotation();
+    }
+
+    private Grabber grabber;
+    private void UpdateRotation()
+    {
+        grabber = grabber ?? GetComponent<Grabber>();
+        var xzVelocity = rigidbody.velocity;
+        xzVelocity.y = 0;
+        if (!grabber.IsHolding && xzVelocity != Vector3.zero)
+        {
+
+            rigidbody.rotation = Quaternion.LookRotation(xzVelocity *-1);
+        }
     }
 
     private bool IsJump()

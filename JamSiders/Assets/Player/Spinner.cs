@@ -19,6 +19,6 @@ public class Spinner : MonoBehaviour
 
 	    var rot = Input.GetAxis("TriggerAxis");
 	    if (debug) { Debug.Log("Spinner TriggerAxis: " + rot);}
-	    rigidbody.AddRelativeTorque(Vector3.up * rot * rotScale);
+	    rigidbody.AddRelativeTorque(Vector3.up * rot * rotScale * -1);
 	}
 }

@@ -27,6 +27,8 @@ namespace Assets.Player
             }
         }
 
+        public bool IsHolding { get { return grabbedJoiner != null; } }
+
         private void LetGo()
         {
             if (grabbedJoiner == null) { return; }
@@ -52,10 +54,12 @@ namespace Assets.Player
 
         private void Grab()
         {
+            Debug.Log("grabbing");
             if (grabbedJoiner != null) { return; }
             var closest = UnityEngine.Physics.OverlapSphere(transform.position, maxGrabDistance).Where(col => col.GetComponent<GrabAnchor>() != null).GetClosest(transform.position);
             if (closest != null)
             {
+                Debug.Log("targetfound");
                 var joiner = closest.gameObject.AddComponent<BallSocketJoiner>().Init(this);
                 closest.gameObject.AddComponent<CollisionHitter>();
                 //joiner.ConnectedBody = rigidbody;

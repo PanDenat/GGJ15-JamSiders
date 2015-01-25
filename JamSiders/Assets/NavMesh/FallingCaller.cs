@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class FallingCaller : MonoBehaviour
@@ -37,7 +38,14 @@ public class FallingCaller : MonoBehaviour
 	{
 		Cloud.SetActive(true);
 		Text.text = GetMessage();
+	    StartCoroutine(HideMessage());
 	}
+
+    IEnumerator HideMessage()
+    {
+        yield return new WaitForSeconds(3);
+        Cloud.SetActive(false);
+    }
 
 	private string GetMessage()
 	{
