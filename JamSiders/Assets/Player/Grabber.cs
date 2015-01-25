@@ -27,6 +27,8 @@ namespace Assets.Player
             }
         }
 
+        public bool IsHolding { get { return grabbedJoiner != null; } }
+
         private void LetGo()
         {
             if (grabbedJoiner == null) { return; }
