@@ -8,7 +8,7 @@ namespace Assets.Physics
 {
     class CollisionHitter : MonoBehaviour
     {
-        public float scale = 1f;
+        public float scale = 30f;
         public float upForce = 10f;
 
         void OnCollisionEnter(Collision collision)
