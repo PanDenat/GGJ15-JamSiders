@@ -51,7 +51,7 @@ namespace Assets.Physics
             rb.constraints = cachedConstraints;
             rb.transform.rotation = cachedQuaternion;
             var ai = rb.GetComponent<Walker>();
-            if (ai != null) { ai.enabled = false; }
+            if (ai != null) { ai.enabled = true; }
         }
 
         public BallSocketJoiner Init(Grabber grabber)
