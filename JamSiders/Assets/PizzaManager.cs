@@ -15,6 +15,8 @@ public class PizzaManager : MonoBehaviour
 	{
 		instance = this;
 		StartCoroutine(WaitForPizza() );
+		OnDeliverPizza += () => Debug.Log("pizza");
+		OnEatePizza += () => Debug.Log("pizza2");
 	}
 	IEnumerator WaitForPizza()
 	{

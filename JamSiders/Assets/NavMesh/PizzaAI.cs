@@ -18,6 +18,7 @@ public class PizzaAI : MonoBehaviour
 	private void PizzeAgainHere()
 	{
 		GetComponent<DestinationChecker>().Tag = "Pizza";
+		GetComponent<Walker>().destination = null;
 		PizzaManager.instance.OnDeliverPizza -= PizzeHere;
 
 	}
@@ -25,6 +26,7 @@ public class PizzaAI : MonoBehaviour
 	private void PizzeHere()
 	{
 		GetComponent<DestinationChecker>().Tag = "Pizza";
+		GetComponent<Walker>().destination = null;
 		PizzaManager.instance.OnEatePizza -= PizzeAgainHere;
 
 	}
