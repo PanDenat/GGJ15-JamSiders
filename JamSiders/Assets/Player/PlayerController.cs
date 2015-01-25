@@ -55,11 +55,5 @@ public class PlayerController : MonoBehaviour
 
         return xzV * velocityScale;
     }
-
-    void OnCollisionStay()
-    {
-        //Debug.Log("CollisionStay", this);
-        //lastGroundTouchTime = Time.time;
-    }
 }
 
