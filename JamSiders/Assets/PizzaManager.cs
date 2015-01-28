@@ -26,12 +26,12 @@ public class PizzaManager : MonoBehaviour
 	}
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Space))
-			if (OnDeliverPizza != null)
-				OnDeliverPizza();
-		if (Input.GetKeyDown(KeyCode.Return))
-			if (OnEatePizza != null)
-				OnEatePizza();
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //    if (OnDeliverPizza != null)
+        //        OnDeliverPizza();
+        //if (Input.GetKeyDown(KeyCode.Return))
+        //    if (OnEatePizza != null)
+        //        OnEatePizza();
 	}
 
 	public void PizzaEaten()
