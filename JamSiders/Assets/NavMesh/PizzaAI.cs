@@ -25,6 +25,7 @@ public class PizzaAI : MonoBehaviour
 
 	private void PizzeHere()
 	{
+		GetComponent<FallingCaller>().SayPizza();
 		GetComponent<DestinationChecker>().Tag = "Pizza";
 		GetComponent<Walker>().destination = null;
 		PizzaManager.instance.OnEatePizza -= PizzeAgainHere;

@@ -29,10 +29,12 @@ public class FallingCaller : MonoBehaviour
 	public void Update()
 	{
 		Cloud.transform.LookAt(Camera.main.transform);
-		if (Cloud.activeSelf == false && rigidbody.velocity.y<-5)
+		if (Cloud.activeSelf == false && rigidbody.velocity.y<-9)
 		{
 			Say();
 		}
+		if (transform.position.y < -20)
+			Cloud.SetActive(false);
 	}
 	public void Say()
 	{
@@ -50,5 +52,12 @@ public class FallingCaller : MonoBehaviour
 	private string GetMessage()
 	{
 		return Messages[Random.Range(0, Messages.Count)];
+	}
+
+	public void SayPizza()
+	{
+		Cloud.SetActive(true);
+		Text.text = "Pizza!";
+		StartCoroutine(HideMessage());
 	}
 }
