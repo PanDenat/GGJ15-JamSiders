@@ -32,6 +32,7 @@ namespace Assets.Player
         private void LetGo()
         {
             if (grabbedJoiner == null) { return; }
+            Debug.Log("letting go");
             Destroy(grabbedJoiner.GetComponent<CollisionHitter>());
             Destroy(grabbedJoiner);
             grabbedJoiner = null;
@@ -47,16 +48,16 @@ namespace Assets.Player
 
             if (Input.GetButtonDown("LetGo"))
             {
-                Debug.Log("letting go");
                 LetGo();
             }
         }
 
         private void Grab()
         {
-            Debug.Log("grabbing");
             if (grabbedJoiner != null) { return; }
-            var closest = UnityEngine.Physics.OverlapSphere(transform.position, maxGrabDistance).Where(col => col.GetComponent<GrabAnchor>() != null).GetClosest(transform.position);
+            Debug.Log("grabbing");
+            var closest = UnityEngine.Physics.OverlapSphere(transform.position, maxGrabDistance).Where(col => col.attachedRigidbody != null && col.attachedRigidbody.GetComponent<GrabAnchor>() != null)
+                .Select(col=> col.attachedRigidbody.GetComponent<GrabAnchor>()).GetClosest(transform.position);
             if (closest != null)
             {
                 Debug.Log("targetfound");

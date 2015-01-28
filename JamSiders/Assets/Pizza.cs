@@ -3,11 +3,18 @@ using System.Collections;
 
 public class Pizza : MonoBehaviour
 {
+    bool triggered;
 
-	void OnTriggerEnter(Collider other)
+	void OnCollisionEnter(Collision other)
 	{
-		if (other.gameObject.tag == "Player")
-			StartCoroutine(EatingPizza());
+        Debug.Log("Pizza collided with " + other.gameObject.name + " tagged "
+            + other.gameObject.tag + (other.gameObject.tag == "Player" ? "==" : "!=") + "Player");
+        if (triggered == false && other.gameObject.tag == "Player")
+        {
+            Debug.Log("Pizza triggered!");
+            StartCoroutine(EatingPizza());
+            triggered = true;
+        }
 	}
 
 	IEnumerator EatingPizza()

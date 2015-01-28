@@ -22,6 +22,8 @@ public class DestinationChecker : MonoBehaviour
 
 		if (walker.destination != null)
 		{
+            if (walker.panicDestination && Vector3.Distance(transform.position, walker.destination.position) > 3) return;
+
 			// If other occupy destination
 			if (!walker.panicDestination && Physics.OverlapSphere(walker.destination.position, targetDistance)
 				.Any(a => a.tag == "AI" && a.transform != transform))

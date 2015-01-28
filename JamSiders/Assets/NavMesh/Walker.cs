@@ -16,6 +16,7 @@ public class Walker : MonoBehaviour
 	private new Transform transform;
 	private const float reachDestinationDistance = 2.2f;
 	public bool panicDestination;
+
 	void Awake()
 	{
 		path = new NavMeshPath();

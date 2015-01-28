@@ -49,7 +49,7 @@ namespace Assets.Physics
         {
             yield return new WaitForSeconds(3);
             rb.constraints = cachedConstraints;
-            rb.transform.rotation = cachedQuaternion;
+            rb.rotation = cachedQuaternion;
             var ai = rb.GetComponent<Walker>();
             if (ai != null) { ai.enabled = true; }
         }
