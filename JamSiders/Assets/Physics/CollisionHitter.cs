@@ -17,9 +17,9 @@ namespace Assets.Physics
 
             if (collision.collider.GetComponent<Rigidbody>() == null) return;
 
-            collision.collider.rigidbody.AddForceAtPosition((rigidbody.velocity - collision.relativeVelocity)*scale,
+            collision.collider.GetComponent<Rigidbody>().AddForceAtPosition((GetComponent<Rigidbody>().velocity - collision.relativeVelocity)*scale,
                 collision.contacts.First().point);
-            collision.collider.rigidbody.AddForce(Vector3.up*upForce * collisionSpeed);
+            collision.collider.GetComponent<Rigidbody>().AddForce(Vector3.up*upForce * collisionSpeed);
         }
     }
 }

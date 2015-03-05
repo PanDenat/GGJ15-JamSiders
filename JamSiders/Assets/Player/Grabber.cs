@@ -41,15 +41,15 @@ namespace Assets.Player
 
         void Update()
         {
-            if (Input.GetButtonDown("Grab"))
-            {
-                Grab();
-            }
+			//if (Input.GetButtonDown("Grab"))
+			//{
+			//	Grab();
+			//}
 
-            if (Input.GetButtonDown("LetGo"))
-            {
-                LetGo();
-            }
+			//if (Input.GetButtonDown("LetGo"))
+			//{
+			//	LetGo();
+			//}
         }
 
         private void Grab()

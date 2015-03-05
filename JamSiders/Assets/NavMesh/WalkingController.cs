@@ -23,7 +23,7 @@ namespace Assets.NavMesh
 
         void Update()
         {
-            animator.speed = transform.parent.rigidbody.velocity.magnitude*speedScale;
+            animator.speed = transform.parent.GetComponent<Rigidbody>().velocity.magnitude*speedScale;
         }
     }
 }

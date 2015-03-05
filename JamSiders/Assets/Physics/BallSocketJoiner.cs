@@ -20,16 +20,16 @@ namespace Assets.Physics
             joint = gameObject.AddComponent<CharacterJoint>();
             joint.autoConfigureConnectedAnchor = false;
             joint.anchor = GetComponent<GrabAnchor>().anchor.transform.localPosition;
-            joint.connectedBody = grabber.rigidbody;
-            joint.lowTwistLimit = new SoftJointLimit {limit = 0, bounciness = 0, spring = 0, damper = 0};
-            joint.highTwistLimit = new SoftJointLimit {limit = 0, bounciness = 0, spring = 0, damper = 0};
-            joint.swing1Limit = new SoftJointLimit() { limit = 90, bounciness = 0, spring = 0, damper = 0 };
-            joint.swing1Limit = new SoftJointLimit() { limit = 90, bounciness = 0, spring = 0, damper = 0 };
+            joint.connectedBody = grabber.GetComponent<Rigidbody>();
+            joint.lowTwistLimit = new SoftJointLimit {limit = 0, bounciness = 0 };
+            joint.highTwistLimit = new SoftJointLimit {limit = 0, bounciness = 0};
+            joint.swing1Limit = new SoftJointLimit() { limit = 90, bounciness = 0 };
+            joint.swing1Limit = new SoftJointLimit() { limit = 90, bounciness = 0 };
             joint.axis = Vector3.up;
             joint.connectedAnchor = new Vector3(1.1f, -0.4f, .5f);
 
-            cachedConstraints = rigidbody.constraints;
-            rigidbody.constraints = RigidbodyConstraints.None;
+            cachedConstraints = GetComponent<Rigidbody>().constraints;
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             cachedQuaternion = transform.rotation;
             var ai = GetComponent<Walker>();
             if (ai != null) { ai.enabled = false; }
@@ -41,7 +41,7 @@ namespace Assets.Physics
         void OnDestroy()
         {
             Debug.Log("[BallSocketJoiner] Destroying joint");
-            grabber.StartCoroutine(GiveBackConstraints(rigidbody));
+            grabber.StartCoroutine(GiveBackConstraints(GetComponent<Rigidbody>()));
             Destroy(joint);
         }
 

@@ -15,18 +15,18 @@ public class Spinner : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-        rigidbody.maxAngularVelocity = maxRotation;
+        GetComponent<Rigidbody>().maxAngularVelocity = maxRotation;
 
-	    var rot = Input.GetAxis("TriggerAxis");
-	    rot += GetRotationFromKeyboard();
-	    if (debug) { Debug.Log("Spinner TriggerAxis: " + rot);}
-	    rigidbody.AddRelativeTorque(Vector3.up * rot * rotScale * -1);
+		//var rot = Input.GetAxis("TriggerAxis");
+		//rot += GetRotationFromKeyboard();
+		//if (debug) { Debug.Log("Spinner TriggerAxis: " + rot);}
+		//GetComponent<Rigidbody>().AddRelativeTorque(Vector3.up * rot * rotScale * -1);
 	}
 
     private float GetRotationFromKeyboard()
     {
-        if (Input.GetButton("SpinLeft")) return -1;
-        if (Input.GetButton("SpinRight")) return 1;
+		//if (Input.GetButton("SpinLeft")) return -1;
+		//if (Input.GetButton("SpinRight")) return 1;
         return 0;
     }
 }

@@ -35,8 +35,8 @@ public class Walker : MonoBehaviour
 				{
 					if (path.corners.Length > 1)
 					{
-						if (rigidbody.velocity.magnitude<Speed)
-							rigidbody.AddForce(((path.corners[1] - transform.position)).normalized * Acceleration);
+						if (GetComponent<Rigidbody>().velocity.magnitude<Speed)
+							GetComponent<Rigidbody>().AddForce(((path.corners[1] - transform.position)).normalized * Acceleration);
 					}
 				}
 			}
@@ -49,11 +49,11 @@ public class Walker : MonoBehaviour
 
     private void UpdateRotation()
     {
-        var xzVelocity = rigidbody.velocity;
+        var xzVelocity = GetComponent<Rigidbody>().velocity;
         xzVelocity.y = 0;
         if (xzVelocity != Vector3.zero)
         {
-            rigidbody.rotation = Quaternion.LookRotation(xzVelocity * -1);
+            GetComponent<Rigidbody>().rotation = Quaternion.LookRotation(xzVelocity * -1);
         }
     }
 

@@ -28,7 +28,7 @@ namespace Assets
         private IEnumerator Respawn()
         {
             yield return new WaitForSeconds(3);
-            rigidbody.position = startPosition;
+            GetComponent<Rigidbody>().position = startPosition;
         }
     }
 }

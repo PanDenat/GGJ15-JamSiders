@@ -29,7 +29,7 @@ public class FallingCaller : MonoBehaviour
 	public void Update()
 	{
 		Cloud.transform.LookAt(Camera.main.transform);
-		if (Cloud.activeSelf == false && rigidbody.velocity.y<-9)
+		if (Cloud.activeSelf == false && GetComponent<Rigidbody>().velocity.y<-9)
 		{
 			Say();
 		}
