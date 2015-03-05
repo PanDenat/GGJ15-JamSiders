@@ -12,6 +12,12 @@ namespace Assets.Player
         public float maxGrabDistance = 3;
 
         private BallSocketJoiner _grabbed;
+        private PlayerController playerCtrl;
+
+        protected void Start()
+        {
+            playerCtrl = GetComponent<PlayerController>();
+        }
 
         private BallSocketJoiner grabbedJoiner
         {
@@ -41,15 +47,17 @@ namespace Assets.Player
 
         void Update()
         {
-			//if (Input.GetButtonDown("Grab"))
-			//{
-			//	Grab();
-			//}
+            var pad = playerCtrl.padController;
+            var padId = playerCtrl.playerId;
+			if (pad.isPressed(padId, ControllerButtons.BUTX))
+			{
+				Grab();
+			}
 
-			//if (Input.GetButtonDown("LetGo"))
-			//{
-			//	LetGo();
-			//}
+			if (pad.isPressed(padId, ControllerButtons.BUTB))
+			{
+				LetGo();
+			}
         }
 
         private void Grab()

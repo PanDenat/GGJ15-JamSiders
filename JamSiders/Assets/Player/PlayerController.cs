@@ -11,9 +11,9 @@ public class PlayerController : MonoBehaviour
 	public float minJumpInterval = 2f;
 
 	private CollisionChecker collisionChecker;
-	private PadController padController;
+	public PadController padController;
 	public static int players;
-	private int playerId;
+	public int playerId;
 	// Use this for initialization
 
 	void Start ()
@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
 	private bool IsJump()
     {
         //return Input.GetButtonDown("Jump") && collisionChecker.IsColliding;
-		return false;
+	    return padController.isPressed(ControllerButtons.BUTA) && collisionChecker.IsColliding;
     }
 
 

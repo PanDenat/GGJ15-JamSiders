@@ -6,10 +6,13 @@ public class Spinner : MonoBehaviour
     public bool debug;
     public float rotScale = 1;
     public float maxRotation = 5;
+    private PlayerController playerCtrl;
 
-	// Use this for initialization
+
+    // Use this for initialization
 	void Start ()
 	{
+	     playerCtrl = GetComponentInParent<PlayerController>();
 	}
 	
 	// Update is called once per frame
@@ -17,10 +20,13 @@ public class Spinner : MonoBehaviour
 	{
         GetComponent<Rigidbody>().maxAngularVelocity = maxRotation;
 
-		//var rot = Input.GetAxis("TriggerAxis");
-		//rot += GetRotationFromKeyboard();
-		//if (debug) { Debug.Log("Spinner TriggerAxis: " + rot);}
-		//GetComponent<Rigidbody>().AddRelativeTorque(Vector3.up * rot * rotScale * -1);
+	    var pad = playerCtrl.padController;
+	    var padId = playerCtrl.playerId;
+
+	    var rot = pad.getAnalog(padId, ControllerAnalogs.LEFTTRIGGER) - pad.getAnalog(padId, ControllerAnalogs.RIGHTTRIGGER); //Input.GetAxis("TriggerAxis");
+		rot += GetRotationFromKeyboard();
+		if (debug) { Debug.Log("Spinner TriggerAxis: " + rot);}
+		GetComponent<Rigidbody>().AddRelativeTorque(Vector3.up * rot * rotScale * -1);
 	}
 
     private float GetRotationFromKeyboard()
